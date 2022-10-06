@@ -1,0 +1,90 @@
+<mvc:View
+		controllerName="root.controller.InvoiceList"
+		xmlns="sap.m"
+		xmlns:mvc="sap.ui.core.mvc">
+	<Panel accessibleRole="Region">
+		<headerToolbar>
+			<Toolbar>
+				<Title text="{i18n>SearchBooktitle}"/>
+				<ToolbarSpacer/>
+				<SearchField
+					width="50%"
+					search=".onFilterInvoices"
+					ariaLabelledBy="searchFieldLabel"
+					ariaDescribedBy="searchFieldDescription"
+					placeholder="{i18n>searchFieldPlaceholder}"/>
+			</Toolbar>
+		</headerToolbar>
+		<Table
+			id="invoiceList"
+			class="sapUiResponsiveMargin"
+			width="auto"
+			items="{books>/Books}">
+			<!-- <headerToolbar>
+				<Toolbar>
+					<Title text="{i18n>invoiceListTitle}"/>
+					<ToolbarSpacer/>
+					<SearchField width="50%" search=".onFilterInvoices"/>
+				</Toolbar>
+			</headerToolbar> -->
+			<columns>
+				<Column
+					hAlign="End"
+					minScreenWidth="Small"
+					demandPopin="true"
+					width="4em">
+					<Text text="{i18n>columnId}"/>
+				</Column>
+				<Column>
+					<Text text="{i18n>columnTitle}"/>
+				</Column>
+				<Column>
+					<Text text="{i18n>columnSubtitle}"/>
+				</Column>
+				<Column
+					minScreenWidth="Small"
+					demandPopin="true">
+					<Text text="{i18n>columnAuthor}"/>
+				</Column>
+				<Column
+					minScreenWidth="Tablet"
+					demandPopin="false">
+					<Text text="{i18n>columnCategory}"/>
+				</Column>
+				<Column
+					hAlign="End">
+					<Text text="{i18n>columnPrintDate}"/>
+				</Column>
+				<Column
+					hAlign="End">
+					<Text text="{i18n>columnEditor}"/>
+				</Column>
+			</columns>
+			<items>
+				<ColumnListItem
+					type="Navigation"
+					press=".onPress">
+					<cells>
+						<ObjectNumber number="{books>id}" emphasized="false"/>
+						<ObjectIdentifier title="{books>title}"/>
+						<Text text="{books>subtitle}"/>
+						<Text text="{books>author}"/>
+						<Text text="{books>category}"/>
+						<Text text="{books>print_date}"/>
+						<Text text="{books>editor}"/>
+						<!-- <ObjectNumber
+							number="{
+								parts: [{path: 'invoice>ExtendedPrice'}, {path: 'view>/currency'}],
+								type: 'sap.ui.model.type.Currency',
+								formatOptions: {
+									showMeasure: false
+								}
+							}"
+							unit="{view>/currency}"
+							state="{= ${invoice>ExtendedPrice} > 50 ? 'Error' : 'Success' }"/> -->
+					</cells>
+				</ColumnListItem>
+			</items>
+		</Table>
+	</Panel>
+</mvc:View>

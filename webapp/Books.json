@@ -1,0 +1,49 @@
+{
+  "Books" : [
+    {
+      "id": 1,
+      "title": "harry potter",
+      "subtitle": "filosopher stone",
+      "author": "jk algo",
+      "category": "fantasy",
+      "print_date": "19/10/1995",
+      "editor": "owlcompany"
+    },
+    {
+      "id": 1,
+      "title": "harry potter",
+      "subtitle": "filosopher stone",
+      "author": "jk algo",
+      "category": "fantasy",
+      "print_date": "19/10/1995",
+      "editor": "owlcompany"
+    },
+    {
+      "id": 1,
+      "title": "harry potter",
+      "subtitle": "filosopher stone",
+      "author": "jk algo",
+      "category": "fantasy",
+      "print_date": "19/10/1995",
+      "editor": "owlcompany"
+    },
+    {
+      "id": 1,
+      "title": "harry potter",
+      "subtitle": "filosopher stone",
+      "author": "jk algo",
+      "category": "fantasy",
+      "print_date": "19/10/1995",
+      "editor": "owlcompany"
+    },
+    {
+      "id": 1,
+      "title": "harry potter",
+      "subtitle": "filosopher stone",
+      "author": "jk algo",
+      "category": "fantasy",
+      "print_date": "19/10/1995",
+      "editor": "owlcompany"
+    }
+  ]
+}
