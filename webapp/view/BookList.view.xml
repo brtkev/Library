@@ -1,5 +1,5 @@
 <mvc:View
-		controllerName="root.controller.InvoiceList"
+		controllerName="root.controller.BookList"
 		xmlns="sap.m"
 		xmlns:mvc="sap.ui.core.mvc">
 	<Panel accessibleRole="Region">
@@ -9,14 +9,14 @@
 				<ToolbarSpacer/>
 				<SearchField
 					width="50%"
-					search=".onFilterInvoices"
+					search=".onFilterBooks"
 					ariaLabelledBy="searchFieldLabel"
 					ariaDescribedBy="searchFieldDescription"
 					placeholder="{i18n>searchFieldPlaceholder}"/>
 			</Toolbar>
 		</headerToolbar>
 		<Table
-			id="invoiceList"
+			id="bookList"
 			class="sapUiResponsiveMargin"
 			width="auto"
 			items="{books>/Books}">
