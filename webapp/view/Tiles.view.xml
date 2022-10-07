@@ -1,0 +1,37 @@
+<mvc:View xmlns:core="sap.ui.core"
+		controllerName="root.controller.Tiles"
+		xmlns="sap.m"
+		xmlns:mvc="sap.ui.core.mvc">
+  <!-- <GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" 
+    header="{i18n>searchTileHeader}" 
+    press=".onSearchPress"
+    frameType="TwoByHalf">
+    <TileContent >
+			<ImageContent src="sap-icon://search" />
+		</TileContent>
+  </GenericTile> -->
+  <GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" 
+    header="{i18n>addTileHeader}" 
+    press=".onSearchPress"
+    frameType="TwoByHalf">
+    <TileContent >
+			<ImageContent src="sap-icon://add" />
+		</TileContent>
+  </GenericTile>
+  <GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" 
+    header="{i18n>updateTileHeader}" 
+    press=".onSearchPress"
+    frameType="TwoByHalf">
+    <TileContent >
+			<ImageContent src="sap-icon://edit" />
+		</TileContent>
+  </GenericTile>
+  <GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" 
+    header="{i18n>deleteTileHeader}" 
+    press=".onSearchPress"
+    frameType="TwoByHalf">
+    <TileContent >
+			<ImageContent src="sap-icon://decline" />
+		</TileContent>
+  </GenericTile>
+</mvc:View>

@@ -19,8 +19,7 @@
 				/>
 		</headerContent> -->
 		<content>
-			<!-- <mvc:XMLView viewName="root.view.SearchPanel" /> -->
-			<!-- <mvc:XMLView viewName="root.view.HelloPanel" /> -->
+			<mvc:XMLView viewName="root.view.Tiles" />
 			<mvc:XMLView viewName="root.view.BookList" />
 		</content>
 	</Page>
