@@ -10,12 +10,11 @@ sap.ui.define([
 	return Controller.extend("root.controller.BookList", {
 		formatter: formatter,
 		onInit: function(){
-			// let oViewModel = new JSONModel({
-			// 	currency: "EUR"
-			// });
-			// this.getView().setModel(oViewModel, "view")
+			
+			
 		},
 		onFilterBooks: function(oEvent){
+
 			//build filter arr
 			let aFilter = [];
 			let sQuery = oEvent.getParameter("query");
