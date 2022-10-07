@@ -1,4 +1,4 @@
-<mvc:View
+<mvc:View xmlns:core="sap.ui.core"
 		controllerName="root.controller.BookList"
 		xmlns="sap.m"
 		xmlns:mvc="sap.ui.core.mvc">
@@ -7,6 +7,18 @@
 			<Toolbar>
 				<Title text="{i18n>SearchBooktitle}"/>
 				<ToolbarSpacer/>
+				<Text text="search by"></Text>
+				<Select selectedKey="1" id="bookListSelect" >
+				 <items>
+				  <core:Item key="0" text="id"></core:Item>
+				  <core:Item key="1" text="title"></core:Item>
+				  <core:Item key="2" text="subtitle"></core:Item>
+				  <core:Item key="3" text="author"></core:Item>
+				  <core:Item key="4" text="category"></core:Item>
+				  <core:Item key="5" text="print date"></core:Item>
+				  <core:Item key="6" text="editor"></core:Item>
+				 </items>
+				</Select>
 				<SearchField
 					width="50%"
 					search=".onFilterBooks"

@@ -19,7 +19,7 @@ sap.ui.define([
 		_onObjectMatched: function(oEvent){
 			this.byId("rating").reset();
 			this.getView().bindElement({
-				path: "/" + window.decodeURIComponent(oEvent.getParameter("arguments").invoicePath),
+				path: "/" + window.decodeURIComponent(oEvent.getParameter("arguments").bookPath),
 				model: "invoice"
 			})
 		},

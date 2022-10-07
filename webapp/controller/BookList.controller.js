@@ -19,21 +19,32 @@ sap.ui.define([
 			//build filter arr
 			let aFilter = [];
 			let sQuery = oEvent.getParameter("query");
-	
+
+			//get attribute to filter
+			let attribute = this.byId("bookListSelect").getSelectedItem().getText();
+			
+			//if query push filter
 			if(sQuery){
-				aFilter.push(new Filter("title", FilterOperator.Contains, sQuery));
+				//if attribute id the filter must be equal
+				if(attribute == "id"){
+					aFilter.push(new Filter(attribute, FilterOperator.EQ, sQuery));
+				}else{
+					//else the filter must be contains
+					aFilter.push(new Filter(attribute, FilterOperator.Contains, sQuery));
+				}
 			}
 
 			//FILTER BINDING
 			let oList = this.byId("bookList");
 			let oBinding = oList.getBinding("items");
 			oBinding.filter(aFilter);
+			
 		},
 		onPress: function(oEvent) {
 			let oItem = oEvent.getSource();
 			let oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 			oRouter.navTo("detail", {
-				invoicePath: window.encodeURIComponent(oItem.getBindingContext("books").getPath().substr(1))
+				bookPath: window.encodeURIComponent(oItem.getBindingContext("books").getPath().substr(1))
 			})
 		}
 	})
