@@ -9,5 +9,10 @@ app.use("/", express.static(path.join(__dirname, "./webapp")));
 app.use(express.json());
 app.use(bodyParser.urlencoded({extended: true}))
 
+
+require('./api/endpoints')(app);
+
 const port = process.env.PORT || 8000;
 app.listen(port, () => console.log(`Server started at http://localhost:${port}`));
+
+
