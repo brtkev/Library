@@ -61,8 +61,26 @@ async function addBookAuthor(book_id, authorName){
   await client.end
 }
 
+async function addBookCategory(book_id, category){
+  const client = new Client();
+  await client.connect();
+
+  //get category id
+  let res = await client.query("select category_id from categories where category = $1", [category]);
+  if(res.rowCount === 0){
+    //insert into db
+    res = await client.query("insert into categories(category) values($1) returning category_id", [category]);
+  }
+
+  let category_id = res.rows[0].category_id;
+  //insert into booksauthors
+  res = await client.query("insert into bookscategories(book_id, category_id) values($1, $2)", [book_id, category_id]);
+  await client.end
+}
+
 module.exports = {
   searchByAttribute,
   createBook,
-  addBookAuthor
+  addBookAuthor,
+  addBookCategory
 }
