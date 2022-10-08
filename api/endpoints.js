@@ -1,11 +1,17 @@
+const { searchByAttribute } = require('./queries');
 
 function search(req, res){ 
   const {search, attribute} = req.query;
   
-  //$PSQL "select * from books where $attribute = '${search}'"
-
-  //send JSON
-  res.send(`search`);
+  //QUERY SEARCH
+  searchByAttribute(search, attribute)
+  .then( searchResult => {
+    res.json(searchResult);
+  })
+  .catch( err => {
+    console.log(err)
+    res.send(`error, check logs`);
+  })
 }
 
 function create(req, res){ 
