@@ -1,4 +1,5 @@
 require('dotenv').config();
+const { Client } = require('pg')
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
@@ -9,7 +10,7 @@ app.use("/", express.static(path.join(__dirname, "./webapp")));
 app.use(express.json());
 app.use(bodyParser.urlencoded({extended: true}))
 
-
+//CONFIG ENDPOINTS
 require('./api/endpoints')(app);
 
 const port = process.env.PORT || 8000;
