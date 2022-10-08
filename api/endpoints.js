@@ -1,4 +1,4 @@
-const { searchByAttribute } = require('./queries');
+const { searchByAttribute, createBook, addBookAuthor } = require('./queries');
 
 function search(req, res){ 
   const {search, attribute} = req.query;
@@ -15,12 +15,18 @@ function search(req, res){
 }
 
 function create(req, res){ 
-  const {title, subtitle, author, printDate, editorial} = req.query;
+  const {title, author} = req.query;
   
-  //$PSQL "insert into books(title, subtitle, author, printDate, editorial) values('${title}', '${subtitle}', '${author}', '${printDate}', '${editorial}')"
-
-  //send JSON
-  res.send(`create`);
+  //QUERY CREATE
+  createBook(title, req.query)
+  .then( book_id => {
+    addBookAuthor(book_id, author)
+    res.json({ "book_id" : book_id })
+  })
+  .catch( err => {
+    console.log(err);
+    res.send('error, check the console');
+  });
 }
 
 function update(req, res){ 
