@@ -1,5 +1,5 @@
 const { json } = require('body-parser');
-const { searchByAttribute, createBook, addBookAuthor, addBookCategory } = require('./queries');
+const { searchByAttribute, createBook, updateBook} = require('./queries');
 
 function search(req, res){ 
   const {search, attribute} = req.query;
@@ -16,30 +16,10 @@ function search(req, res){
 }
 
 function create(req, res){ 
-  const {title, authors, categories} = req.query;
-  
   //QUERY CREATE
-  createBook(title, req.query)
+  createBook(req.query)
   .then( book_id => {
-    if(authors) {
-      try {
-        //if not array
-        JSON.parse(authors).forEach(author => addBookAuthor(book_id, author))
-      } catch (error) {
-        //string
-        addBookAuthor(book_id, authors);
-      }
-    }
-
-    if(categories){
-      try {
-        //if not array
-        JSON.parse(categories).forEach(category => addBookCategory(book_id, category));
-      } catch (error) {
-        //string
-        addBookCategory(book_id, categories)
-      }
-    }
+    
     res.json({ "book_id" : book_id })
   })
   .catch( err => {
@@ -49,12 +29,15 @@ function create(req, res){
 }
 
 function update(req, res){ 
-  const {title, subtitle, author, printDate, editorial} = req.query;
+  const {book_id, ...query} = req.query;
   
   //$PSQL "update "
-
-  //send JSON
-  res.send(`update`);
+  updateBook(book_id, query)
+  .then(result => res.json(result))
+  .catch(err => {
+    console.log(err);
+    res.send(`${err}`)
+  });
 }
 
 function remove(req, res){ 
