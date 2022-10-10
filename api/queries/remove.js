@@ -2,10 +2,16 @@ const { Client } = require('pg');
 
 async function removeBook(book_id){
   const client = new Client();
-  client.connect();
+  await client.connect();
   
+  //IF NOT BOOK
+  let r = await client.query("select * from books where book_id = $1", [book_id]);
+  if(! r.rowCount) return {"error" : "book_id doesn't exist"};
 
-  client.end();
+  await client.query("with d1 as (delete from booksauthors where book_id = $1), d2 as (delete from bookscategories where book_id = $1), d3 as (delete from booksextrainfo where book_id = $1) delete from books where book_id = $1", [book_id])
+
+  await client.end();
+  return {"book_id" : book_id}
 }
 
 async function removeBookAuthor(book_id, author_id){
@@ -26,4 +32,4 @@ async function removeBookCategory(book_id, category_id){
   await client.end();
 }
 
-module.exports = { removeBookAuthor, removeBookCategory}
+module.exports = { removeBook,removeBookAuthor, removeBookCategory}

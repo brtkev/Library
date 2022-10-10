@@ -9,6 +9,7 @@ async function searchByAttribute(search, attribute){
   }else{
     res = await client.query(`select * from books where ${attribute} like '%${search}%'`);
   }
+  
   await client.end();
   return res.rows;
 }

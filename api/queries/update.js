@@ -19,7 +19,7 @@ async function updateBook(book_id, query = queryTemplate){
 
   // IF BOOK EXIST 
   let select = await client.query("select book_id from books where book_id = $1", [book_id]);
-  if( ! select.rowCount ) return;
+  if( ! select.rowCount ) return {"error" : "book_id doesn't exist"};
 
   const { authors, categories, title, ...query_} = query;
 
@@ -53,7 +53,7 @@ async function updateBook(book_id, query = queryTemplate){
   }
   
   await client.end();
-  return { res : 200}
+  return {"book_id" : book_id}
 }
 
 async function updateCategories(book_id, categories = []){

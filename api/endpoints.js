@@ -1,6 +1,15 @@
 const Search = require('./queries/search');
 const {createBook} = require('./queries/create');
 const Update = require('./queries/update');
+const { removeBook } = require('./queries/remove');
+
+function errorCatcher(response){
+
+  return function (err){
+    console.log(err);
+    response.send(`${err}`)
+  }
+}
 
 function search(req, res){ 
   const {search, attribute} = req.query;
@@ -10,10 +19,7 @@ function search(req, res){
   .then( searchResult => {
     res.json(searchResult);
   })
-  .catch( err => {
-    console.log(err)
-    res.send(`error, check logs`);
-  })
+  .catch( errorCatcher(res))
 }
 
 function create(req, res){ 
@@ -23,10 +29,7 @@ function create(req, res){
     
     res.json({ "book_id" : book_id })
   })
-  .catch( err => {
-    console.log(err);
-    res.send('error, check the console');
-  });
+  .catch( errorCatcher(res));
 }
 
 function update(req, res){ 
@@ -35,19 +38,15 @@ function update(req, res){
   //$PSQL "update "
   Update(book_id, query)
   .then(result => res.json(result))
-  .catch(err => {
-    console.log(err);
-    res.send(`${err}`)
-  });
+  .catch(errorCatcher(res));
 }
 
 function remove(req, res){ 
   const {book_id} = req.query;
   
-  //$PSQL "delete from books where <condition>"
-
-  //send JSON
-  res.send(`update`);
+  removeBook(book_id)
+  .then(r => res.json(r))
+  .catch(errorCatcher(res));
 }
 
 

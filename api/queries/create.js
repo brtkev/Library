@@ -52,7 +52,7 @@ async function createBook(query = queryTemplate){
     }
   }
 
-  return book_id;
+  return {"book_id" : book_id};
 }
 
 async function addBookAuthor(book_id, authorName){
