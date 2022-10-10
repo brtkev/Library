@@ -1,11 +1,12 @@
-const { json } = require('body-parser');
-const { searchByAttribute, createBook, updateBook} = require('./queries');
+const Search = require('./queries/search');
+const {createBook} = require('./queries/create');
+const Update = require('./queries/update');
 
 function search(req, res){ 
   const {search, attribute} = req.query;
   
   //QUERY SEARCH
-  searchByAttribute(search, attribute)
+  Search(search, attribute)
   .then( searchResult => {
     res.json(searchResult);
   })
@@ -32,7 +33,7 @@ function update(req, res){
   const {book_id, ...query} = req.query;
   
   //$PSQL "update "
-  updateBook(book_id, query)
+  Update(book_id, query)
   .then(result => res.json(result))
   .catch(err => {
     console.log(err);
@@ -41,7 +42,7 @@ function update(req, res){
 }
 
 function remove(req, res){ 
-  const {title, subtitle, author, printDate, editorial} = req.query;
+  const {book_id} = req.query;
   
   //$PSQL "delete from books where <condition>"
 
