@@ -17,7 +17,11 @@ sap.ui.define([
 			let oData = {
 				recipient: {
 					name: "UI5"
-				}
+				},
+				
+				books : [
+				]
+				
 			}; 
 			let oModel = new JSONModel(oData);
 			this.setModel(oModel);	
@@ -27,7 +31,7 @@ sap.ui.define([
 			 oDeviceModel.setDefaultBindingMode("OneWay");
 			 this.setModel(oDeviceModel, "devide"); 
  			
-
+				
 
  			// CREATE THE VIEWS BASED ON THE URL/HASH
  			 this.getRouter().initialize();

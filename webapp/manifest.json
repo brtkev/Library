@@ -74,10 +74,6 @@
                     "fallbackLocale": ""
                 },
                 "uri": "<uriRelativeToManifest>"
-            },
-            "books": {
-                "type" : "sap.ui.model.json.JSONModel",
-                "uri": "Books.json"
             }
         },
         "rootView": {

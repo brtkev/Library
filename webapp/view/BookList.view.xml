@@ -31,14 +31,7 @@
 			id="bookList"
 			class="sapUiResponsiveMargin"
 			width="auto"
-			items="{books>/Books}">
-			<!-- <headerToolbar>
-				<Toolbar>
-					<Title text="{i18n>invoiceListTitle}"/>
-					<ToolbarSpacer/>
-					<SearchField width="50%" search=".onFilterInvoices"/>
-				</Toolbar>
-			</headerToolbar> -->
+			items="{path: '/books'}">
 			<columns>
 				<Column
 					hAlign="End"
@@ -77,13 +70,13 @@
 					type="Navigation"
 					press=".onPress">
 					<cells>
-						<ObjectNumber number="{books>id}" emphasized="false"/>
-						<ObjectIdentifier title="{books>title}"/>
-						<Text text="{books>subtitle}"/>
-						<Text text="{books>author}"/>
-						<Text text="{books>category}"/>
-						<Text text="{books>print_date}"/>
-						<Text text="{books>editor}"/>
+						<ObjectNumber number="{book_id}" emphasized="false"/>
+						<ObjectIdentifier title="{title}"/>
+						<Text text="{subtitle}"/>
+						<Text text="{author}"/>
+						<Text text="{category}"/>
+						<Text text="{printdate}"/>
+						<Text text="{editor}"/>
 						<!-- <ObjectNumber
 							number="{
 								parts: [{path: 'invoice>ExtendedPrice'}, {path: 'view>/currency'}],
