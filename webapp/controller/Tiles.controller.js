@@ -6,10 +6,8 @@ sap.ui.define([
   return Controller.extend("root.controller.Tiles", {
     onSearchPress: function(oEvent){
 
-      MessageToast.show("search tile pressed");
       let oRouter = this.getOwnerComponent().getRouter();
 			oRouter.navTo("update");
-      MessageToast.show("nav");
     }
   });
 });

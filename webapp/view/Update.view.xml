@@ -1,19 +1,16 @@
 <mvc:View
+	controllerName="root.controller.Update"
 	xmlns:mvc="sap.ui.core.mvc"
 	xmlns:l="sap.ui.layout"
 	xmlns:f="sap.ui.layout.form"
 	xmlns:core="sap.ui.core"
 	xmlns="sap.m" >
-	<VBox class="sapUiSmallMargin">
+	<Page class="sapUiSmallMargin" showNavButton="true"
+		navButtonPress=".onNavBack" title="Update">
 		<f:Form id="FormToolbar"
 			editable="true"
-			ariaLabelledBy="Title1">
-			<f:toolbar>
-				<Toolbar id="TB1">
-					<Title id="Title1" text="Update"/>
-					<ToolbarSpacer />
-				</Toolbar>
-			</f:toolbar>
+			ariaLabelledBy="Title1"  >
+			
 			<f:layout>
 				<f:ResponsiveGridLayout
 					labelSpanXL="4"
@@ -34,10 +31,10 @@
 				<f:FormContainer ariaLabelledBy="Title2" >
 					<f:toolbar>
 						<Toolbar>
-							<Title id="Title2" text="id:"/>
+							<Title id="Title2" text="book id:"/>
 							<SearchField
 								width="50%"
-								search=".onFilterBooks"
+								search=".onSearchId"
 								ariaLabelledBy="searchFieldLabel"
 								ariaDescribedBy="searchFieldDescription"
 								placeholder=""/>
@@ -46,58 +43,52 @@
 					<f:formElements>
 						<f:FormElement label="Title"  >
 							<f:fields>
-								<Input value="{SupplierName}" id="name" enabled="false" />
+								<Input value="{/book/title}" id="bookTitle" enabled="{/inputStatus}" submit=".onSubmit"/>
 							</f:fields>
 						</f:FormElement>
 						<f:FormElement label="Subtitle">
 							<f:fields>
-								<Input value="{Street}" enabled="false" />
+								<Input value="{/book/subtitle}" enabled="{/inputStatus}" submit=".onSubmit"/>
 							</f:fields>
 						</f:FormElement>
 						<f:FormElement label="Description">
 							<f:fields>
-								<Input value="{ZIPCode}" enabled="false" />
+								<Input value="{/book/description}" enabled="{/inputStatus}" submit=".onSubmit"/>
 							</f:fields>
 						</f:FormElement>
 						<f:FormElement label="Print date">
 							<f:fields>
-								<Input value="{ZIPCode}" enabled="false" />
+								<Input value="{/book/printdate}" enabled="{/inputStatus}" submit=".onSubmit"/>
 							</f:fields>
 						</f:FormElement>
 						<f:FormElement label="Editorial">
 							<f:fields>
-								<Input value="{ZIPCode}" enabled="false" />
+								<Input value="{/book/editorial}" enabled="{/inputStatus}" submit=".onSubmit" />
 							</f:fields>
 						</f:FormElement>
 						<f:FormElement label="Image">
 							<f:fields>
-								<Input value="{ZIPCode}" enabled="false" />
+								<Input value="{/book/img}" enabled="{/inputStatus}" submit=".onSubmit"/>
 							</f:fields>
 						</f:FormElement>
 						<f:FormElement label="Categories">
 							<f:fields>
-								<Select width="100%" id="country" selectedKey="{Country}" enabled="false" >
-									<items>
-										<core:Item text="Drama" key="Drama"/>
-										<core:Item text="Love" key="Love"/>
-										<core:Item text="Accion" key="Accion"/>
-									</items>
-								</Select>
+								<Input value="{/book/categories}" enabled="{/inputStatus}" placeholder="category,category2,category3" submit=".onSubmit"/>
 							</f:fields>
 						</f:FormElement>
 						<f:FormElement label="Authors">
 							<f:fields>
-								<Select width="100%" id="authors" selectedKey="{Country}" enabled="false" >
-									<items>
-										<core:Item text="JK name" key="JK name"/>
-										<core:Item text="kevin" key="kevin"/>
-									</items>
-								</Select>
+								<Input value="{/book/authors}" enabled="{/inputStatus}" placeholder="name,name2,name3" submit=".onSubmit" />
 							</f:fields>
+						</f:FormElement>
+						<f:FormElement >
 						</f:FormElement>
 					</f:formElements>
 				</f:FormContainer>
 			</f:formContainers>
 		</f:Form>
-	</VBox>
+		<FlexBox justifyContent="Center">
+			<Button text="Update" width="100%" press=".onSubmit" />
+		</FlexBox>
+	</Page>
 </mvc:View>

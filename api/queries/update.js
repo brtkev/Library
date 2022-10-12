@@ -21,27 +21,41 @@ async function updateBook(book_id, query = queryTemplate){
   let select = await client.query("select book_id from books where book_id = $1", [book_id]);
   if( ! select.rowCount ) return {"error" : "book_id doesn't exist"};
 
-  const { authors, categories, title, ...query_} = query;
+  const { authors, categories, title} = query;
 
   //UPDATE BOOKS
   if(title) await client.query("update books set title = $1 where book_id = $2", [title, book_id])
 
   //UPDATE CATEGORIES
-  if(categories) await updateCategories(book_id, JSON.parse(categories));
+  if(categories){
+    try {
+      await updateCategories(book_id, JSON.parse(categories));
+    } catch (error) {
+      await updateCategories(book_id, categories.split(/ *, */));
+    }
+  }
   //UPDATE AUTHORS
-  if(authors) await updateAuthors(book_id, JSON.parse(authors));
+  if(authors){
+    try {
+      await updateAuthors(book_id, JSON.parse(authors));
+    } catch (error) {
+      await updateAuthors(book_id, authors.split(/ *[,] */));
+    }
+  }
   
   
+  const { subtitle, description, editorial, img, printdate } = query;
+  const extraInfo = { subtitle, description, editorial, img, printdate };
   //UPDATE BOOKSEXTRAINFO
-  const values = Object.keys(query_).reduce( (prev, curr) => {
+  const values = Object.keys(extraInfo).reduce( (prev, curr) => {
     if(prev == ""){
-      prev += `${curr} = '${query_[curr]}'`
+      prev += `${curr} = '${extraInfo[curr]}'`
     }else{
-      prev += `, ${curr} = '${query_[curr]}'`
+      // if(extraInfo[curr] == "null")prev += `, ${curr} = ''`;
+      prev += `, ${curr} = '${extraInfo[curr]}'`
     }
     return prev;
   }, "");
-
   if(values != ""){
     let str = `update booksextrainfo set ${values} where book_id = $1`;
     try{
@@ -69,6 +83,7 @@ async function updateCategories(book_id, categories = []){
   })
   
   categories.forEach(async category => {
+    if(category == "") return;
     let i = categoriesInDB.findIndex( cat=> cat.name == category);
     if(i == -1 ) await addBookCategory(book_id, category)
   })
@@ -89,6 +104,7 @@ async function updateAuthors(book_id, authors = []){
   })
 
   authors.forEach(async author => {
+    if(author == "") return;
     let i = authorsInDB.findIndex(a => a.name == author);
     if(i == -1 ) await addBookAuthor(book_id, author)
   })
