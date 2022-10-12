@@ -5,15 +5,14 @@ async function searchByAttribute(search, attribute){
   await client.connect();
 
   //IF attribute is id or not
-  let where = attribute == 'id' ? "where book_id = $1" : "where " + `${attribute} like '%${search}%'`,
-    values = attribute == 'id' ? [search] : [];
+  let where = attribute == 'book_id' ? "where book_id = $1" : "where " + `${attribute} like '%${search}%'`,
+    values = attribute == 'book_id' ? [search] : [];
 
   //SEARCH for everything but categories and authors
   let str = "select * from books left join booksextrainfo using(book_id) left join bookscategories using(book_id) left join categories using(category_id) left join booksauthors using(book_id) left join authors using(author_id) " + where + " order by book_id";
   let res = await client.query(str, values);
-  let rows = res.rows;
-
-  rows = 
+  
+  let rows = joinCategoriesAndAuthors(res.rows)
   
   await client.end();
   return rows;

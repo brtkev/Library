@@ -13,23 +13,24 @@ sap.ui.define([
 		
 		},
 		onFilterBooks: function(oEvent){
-			console.log("on search");
 			let search = oEvent.getParameter("query");
+			if(!search){
+				this.getView().getModel().setData({books: []})
+			}else{
+				//get attribute to filter
+				let attribute = this.byId("bookListSelect").getSelectedItem().getKey();
+				const url = "/api/search?" + new URLSearchParams({
+					search,
+					attribute
+				})
+				fetch(url, { method: "GET" })
+				.then(r => r.json()
+				.then(data => {
+					let model = this.getView().getModel();
+					model.setData({books : data})
+				}))
 
-			//get attribute to filter
-			let attribute = this.byId("bookListSelect").getSelectedItem().getText();
-			console.log(search)
-			const url = "/api/search?" + new URLSearchParams({
-				search,
-				attribute
-			})
-			
-			fetch(url, { method: "GET" })
-			.then(r => r.json()
-			.then(data => {
-				let model = this.getView().getModel();
-				model.setData({books : data}, true)
-			}))
+			}
 		},
 		onPress: function(oEvent) {
 			console.log("click")

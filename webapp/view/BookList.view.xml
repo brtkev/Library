@@ -8,15 +8,15 @@
 				<Title text="{i18n>SearchBooktitle}"/>
 				<ToolbarSpacer/>
 				<Text text="search by"></Text>
-				<Select selectedKey="1" id="bookListSelect" >
+				<Select selectedKey="title" id="bookListSelect" >
 				 <items>
-				  <core:Item key="0" text="id"></core:Item>
-				  <core:Item key="1" text="title"></core:Item>
-				  <core:Item key="2" text="subtitle"></core:Item>
-				  <core:Item key="3" text="author"></core:Item>
-				  <core:Item key="4" text="category"></core:Item>
-				  <core:Item key="5" text="print date"></core:Item>
-				  <core:Item key="6" text="editor"></core:Item>
+				  <core:Item key="book_id" text="id"></core:Item>
+				  <core:Item key="title" text="title"></core:Item>
+				  <core:Item key="subtitle" text="subtitle"></core:Item>
+				  <core:Item key="author_name" text="author"></core:Item>
+				  <core:Item key="category" text="category"></core:Item>
+				  <core:Item key="printdate" text="print year"></core:Item>
+				  <core:Item key="editorial" text="editor"></core:Item>
 				 </items>
 				</Select>
 				<SearchField
@@ -73,10 +73,10 @@
 						<ObjectNumber number="{book_id}" emphasized="false"/>
 						<ObjectIdentifier title="{title}"/>
 						<Text text="{subtitle}"/>
-						<Text text="{author}"/>
-						<Text text="{category}"/>
+						<Text text="{authors}"/>
+						<Text text="{categories}"/>
 						<Text text="{printdate}"/>
-						<Text text="{editor}"/>
+						<Text text="{editorial}"/>
 						<!-- <ObjectNumber
 							number="{
 								parts: [{path: 'invoice>ExtendedPrice'}, {path: 'view>/currency'}],
