@@ -37,7 +37,10 @@ async function createBook(query = queryTemplate){
       JSON.parse(authors).forEach(author => addBookAuthor(book_id, author))
     } catch (error) {
       //string
-      addBookAuthor(book_id, authors);
+      authors.split(/ *, */).forEach(author => {
+        if(author == "") return;
+        addBookAuthor(book_id, author)
+      })
     }
   }
 
@@ -48,7 +51,11 @@ async function createBook(query = queryTemplate){
       JSON.parse(categories).forEach(category => addBookCategory(book_id, category));
     } catch (error) {
       //string
-      addBookCategory(book_id, categories)
+      categories.split(/ *, */).forEach(category => {
+        if(category == "") return;
+        addBookCategory(book_id, category)
+      })
+      
     }
   }
 
