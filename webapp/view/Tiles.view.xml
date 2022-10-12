@@ -28,7 +28,7 @@
   </GenericTile>
   <GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" 
     header="{i18n>deleteTileHeader}" 
-    press=".onSearchPress"
+    press=".onDeletePress"
     frameType="TwoByHalf">
     <TileContent >
 			<ImageContent src="sap-icon://decline" />

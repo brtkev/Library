@@ -115,6 +115,11 @@
                     "pattern": "create",
                     "name": "create",
                     "target": "create"
+                },
+                {
+                    "pattern": "delete",
+                    "name": "delete",
+                    "target": "delete"
                 }
             ],
             "targets": {
@@ -133,6 +138,10 @@
                 "create":{
                     "viewId" :"create",
                     "viewName": "crud.Create"
+                },
+                "delete":{
+                    "viewId" :"delete",
+                    "viewName": "crud.Delete"
                 }
 
             }

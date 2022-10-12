@@ -12,7 +12,11 @@ sap.ui.define([
     onCreatePress: function(){
       let oRouter = this.getOwnerComponent().getRouter();
       oRouter.navTo("create");
-
+      
+    },
+    onDeletePress: function(){
+      let oRouter = this.getOwnerComponent().getRouter();
+      oRouter.navTo("delete");  
     }
   });
 });

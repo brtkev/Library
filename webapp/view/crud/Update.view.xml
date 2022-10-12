@@ -5,7 +5,6 @@
 	xmlns:f="sap.ui.layout.form"
 	xmlns:core="sap.ui.core"
 	xmlns="sap.m"
-	afterRendering=".onAfterRenderingView"
 	 >
 	<Page class="sapUiSmallMargin" showNavButton="true"
 		navButtonPress=".onNavBack" title="Update">

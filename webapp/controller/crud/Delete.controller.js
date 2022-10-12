@@ -7,16 +7,17 @@ sap.ui.define([
 ], function(Controller, JSONModel, MessageToast, History, UIComponent) {
   "use strict";
 
-  let PageController = Controller.extend("root.controller.crud.Create", {
+  let PageController = Controller.extend("root.controller.crud.Delete", {
 
-    onSubmit: function ( ){
-      let data = this.getView().getModel().getData();
-      const url = "/api/create?" + new URLSearchParams(data.book);
-      fetch(url, { method: "POST" })
+    onDelete: function ( e){
+      let book_id = e.getParameter("value");
+
+      const url = "/api/remove?" + new URLSearchParams({book_id});
+      fetch(url, { method: "DELETE" })
       .then(r => r.json()
       .then(data => {
         console.log(data)
-        MessageToast.show(`book was added to the collection with the id ${data.book_id}`);
+        MessageToast.show(`book with id of ${data.book_id} was deleted from the collection`);
       }))
       .catch(err => {
         MessageToast.show(`Error happened`);
