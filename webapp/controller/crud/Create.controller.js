@@ -7,23 +7,23 @@ sap.ui.define([
 ], function(Controller, JSONModel, MessageToast, History, UIComponent) {
   "use strict";
 
-  let PageController = Controller.extend("root.controller.Update", {
+  let PageController = Controller.extend("root.controller.crud.Update", {
 
     onInit: function (oEvent) {
 
       // set explored app's demo model on this sample
       var oModel = new JSONModel({
         book : {
-          book_id : null,
-          title : null,
-          subtitle : null,
-          description : null,
-          printdate : null,
-          editorial: null,
-          img : null,
-          categories : [],
-          authors: []
-        }, inputStatus : false
+          book_id : "",
+          title : "",
+          subtitle : "",
+          description : "",
+          printdate : "",
+          editorial: "",
+          img : "",
+          categories : "",
+          authors: ""
+        }, inputStatus : true
       });
       this.getView().setModel(oModel);
 

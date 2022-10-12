@@ -4,10 +4,15 @@ sap.ui.define([
 ], function(Controller, MessageToast){
   "use strict";
   return Controller.extend("root.controller.Tiles", {
-    onSearchPress: function(oEvent){
+    onUpdatePress: function(oEvent){
 
       let oRouter = this.getOwnerComponent().getRouter();
 			oRouter.navTo("update");
+    },
+    onCreatePress: function(){
+      let oRouter = this.getOwnerComponent().getRouter();
+      oRouter.navTo("create");
+
     }
   });
 });

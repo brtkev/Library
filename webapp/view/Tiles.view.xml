@@ -12,7 +12,7 @@
   </GenericTile> -->
   <GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" 
     header="{i18n>addTileHeader}" 
-    press=".onSearchPress"
+    press=".onCreatePress"
     frameType="TwoByHalf">
     <TileContent >
 			<ImageContent src="sap-icon://add" />
@@ -20,7 +20,7 @@
   </GenericTile>
   <GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" 
     header="{i18n>updateTileHeader}" 
-    press=".onSearchPress"
+    press=".onUpdatePress"
     frameType="TwoByHalf">
     <TileContent >
 			<ImageContent src="sap-icon://edit" />
