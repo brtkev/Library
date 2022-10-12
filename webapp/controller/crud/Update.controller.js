@@ -9,26 +9,6 @@ sap.ui.define([
 
   let PageController = Controller.extend("root.controller.crud.Update", {
 
-    onInit: function (oEvent) {
-
-      // set explored app's demo model on this sample
-      var oModel = new JSONModel({
-        book : {
-          book_id : null,
-          title : null,
-          subtitle : null,
-          description : null,
-          printdate : null,
-          editorial: null,
-          img : null,
-          categories : [],
-          authors: []
-        }, inputStatus : false
-      });
-      this.getView().setModel(oModel);
-
-
-    },
 
     onSearchId: function (oEvent){
       let search = oEvent.getParameter("query");
@@ -41,7 +21,7 @@ sap.ui.define([
       .then(r => r.json()
       .then(data => {
         let model = this.getView().getModel();
-        model.setData({book : data[0], inputStatus : true})
+        model.setData({...model.getData(), ...{book : data[0], inputStatus : true}})
       }))
       MessageToast.show(search)
     },

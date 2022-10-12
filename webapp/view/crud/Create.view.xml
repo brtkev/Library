@@ -1,4 +1,5 @@
 <mvc:View
+  controllerName="root.controller.crud.Create"
 	xmlns:mvc="sap.ui.core.mvc"
 	xmlns:l="sap.ui.layout"
 	xmlns:f="sap.ui.layout.form"
@@ -32,42 +33,42 @@
 					<f:formElements>
 						<f:FormElement label="Title"  >
 							<f:fields>
-								<Input value="{/book/title}" id="bookTitle" enabled="{/inputStatus}" submit=".onSubmit"/>
+								<Input value="{/book/title}" id="bookTitle" submit=".onSubmit"/>
 							</f:fields>
 						</f:FormElement>
 						<f:FormElement label="Subtitle">
 							<f:fields>
-								<Input value="{/book/subtitle}" enabled="{/inputStatus}" submit=".onSubmit"/>
+								<Input value="{/book/subtitle}" submit=".onSubmit"/>
 							</f:fields>
 						</f:FormElement>
 						<f:FormElement label="Description">
 							<f:fields>
-								<Input value="{/book/description}" enabled="{/inputStatus}" submit=".onSubmit"/>
+								<Input value="{/book/description}" submit=".onSubmit"/>
 							</f:fields>
 						</f:FormElement>
 						<f:FormElement label="Print date">
 							<f:fields>
-								<Input value="{/book/printdate}" enabled="{/inputStatus}" submit=".onSubmit"/>
+								<Input value="{/book/printdate}" submit=".onSubmit"/>
 							</f:fields>
 						</f:FormElement>
 						<f:FormElement label="Editorial">
 							<f:fields>
-								<Input value="{/book/editorial}" enabled="{/inputStatus}" submit=".onSubmit" />
+								<Input value="{/book/editorial}" submit=".onSubmit" />
 							</f:fields>
 						</f:FormElement>
 						<f:FormElement label="Image">
 							<f:fields>
-								<Input value="{/book/img}" enabled="{/inputStatus}" submit=".onSubmit"/>
+								<Input value="{/book/img}" submit=".onSubmit"/>
 							</f:fields>
 						</f:FormElement>
 						<f:FormElement label="Categories">
 							<f:fields>
-								<Input value="{/book/categories}" enabled="{/inputStatus}" placeholder="category,category2,category3" submit=".onSubmit"/>
+								<Input value="{/book/categories}" placeholder="category,category2,category3" submit=".onSubmit"/>
 							</f:fields>
 						</f:FormElement>
 						<f:FormElement label="Authors">
 							<f:fields>
-								<Input value="{/book/authors}" enabled="{/inputStatus}" placeholder="name,name2,name3" submit=".onSubmit" />
+								<Input value="{/book/authors}" placeholder="name,name2,name3" submit=".onSubmit" />
 							</f:fields>
 						</f:FormElement>
 						<f:FormElement >

@@ -9,50 +9,14 @@ sap.ui.define([
 
   let PageController = Controller.extend("root.controller.crud.Update", {
 
-    onInit: function (oEvent) {
-
-      // set explored app's demo model on this sample
-      var oModel = new JSONModel({
-        book : {
-          book_id : "",
-          title : "",
-          subtitle : "",
-          description : "",
-          printdate : "",
-          editorial: "",
-          img : "",
-          categories : "",
-          authors: ""
-        }, inputStatus : true
-      });
-      this.getView().setModel(oModel);
-
-
-    },
-
-    onSearchId: function (oEvent){
-      let search = oEvent.getParameter("query");
-      
-      const url = "/api/search?" + new URLSearchParams({
-        search,
-        attribute : 'book_id'
-      });
-      fetch(url, { method: "GET" })
-      .then(r => r.json()
-      .then(data => {
-        let model = this.getView().getModel();
-        model.setData({book : data[0], inputStatus : true})
-      }))
-      MessageToast.show(search)
-    },
-
     onSubmit: function ( ){
       let data = this.getView().getModel().getData();
-      const url = "/api/update?" + new URLSearchParams(data.book);
-      fetch(url, { method: "PUT" })
+      const url = "/api/create?" + new URLSearchParams(data.book);
+      fetch(url, { method: "POST" })
       .then(r => r.json()
       .then(data => {
-        MessageToast.show(`book ${data.book_id} updated`);
+        console.log(data)
+        MessageToast.show(`book was added to the collection with the id ${data.book_id}`);
       }))
       .catch(err => {
         MessageToast.show(`Error happened`);

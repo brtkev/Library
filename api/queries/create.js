@@ -24,6 +24,7 @@ async function createBook(query = queryTemplate){
 
   //INSERT INTO booksextrainfo
   values = [book_id ,subtitle, description, printdate, img, editorial];
+  values = values.map(val => val == "" ? null : val);
   res = await client.query("INSERT INTO booksextrainfo(book_id, subtitle, description, printdate, img, editorial) VALUES($1, $2, $3, $4, $5, $6) returning book_id",
    values);
 

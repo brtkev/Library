@@ -16,9 +16,22 @@ sap.ui.define([
 			//set data models
 			let oData = {
 				books : [
-				]
+				],
+				book : {
+          book_id : "",
+          title : "",
+          subtitle : "",
+          description : "",
+          printdate : "",
+          editorial: "",
+          img : "",
+          categories : "",
+          authors: ""
+        },
+				inputStatus : false
 				
-			}; 
+			};
+      
 			let oModel = new JSONModel(oData);
 			this.setModel(oModel);	
 

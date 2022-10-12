@@ -27,7 +27,10 @@ sap.ui.define([
 				.then(r => r.json()
 				.then(data => {
 					let model = this.getView().getModel();
-					model.setData({books : data})
+					model.setData({
+						...model.getData(),
+					books : data
+					})
 				}))
 
 			}

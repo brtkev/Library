@@ -25,9 +25,8 @@ function search(req, res){
 function create(req, res){ 
   //QUERY CREATE
   createBook(req.query)
-  .then( book_id => {
-    
-    res.json({ "book_id" : book_id })
+  .then( r => {
+    res.json(r)
   })
   .catch( errorCatcher(res));
 }
