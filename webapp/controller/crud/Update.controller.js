@@ -20,10 +20,14 @@ sap.ui.define([
       fetch(url, { method: "GET" })
       .then(r => r.json()
       .then(data => {
-        let model = this.getView().getModel();
-        model.setData({...model.getData(), ...{book : data[0], inputStatus : true}})
+        console.log(data)
+        if(data){
+          let model = this.getView().getModel();
+          model.setData({...model.getData(), ...{book : data[0], inputStatus : true}})
+        }else{
+          MessageToast.show(`id ${search} not found!`)
+        }
       }))
-      MessageToast.show(search)
     },
 
     onSubmit: function ( ){
