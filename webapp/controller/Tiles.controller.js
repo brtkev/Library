@@ -4,8 +4,12 @@ sap.ui.define([
 ], function(Controller, MessageToast){
   "use strict";
   return Controller.extend("root.controller.Tiles", {
-    onSearchPress: function(){
+    onSearchPress: function(oEvent){
+
       MessageToast.show("search tile pressed");
+      let oRouter = this.getOwnerComponent().getRouter();
+			oRouter.navTo("update");
+      MessageToast.show("nav");
     }
   });
 });

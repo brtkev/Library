@@ -15,10 +15,6 @@ sap.ui.define([
 			UIComponent.prototype.init.apply(this, arguments);  
 			//set data models
 			let oData = {
-				recipient: {
-					name: "UI5"
-				},
-				
 				books : [
 				]
 				

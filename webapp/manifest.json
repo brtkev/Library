@@ -105,6 +105,11 @@
                     "pattern": "detail/{bookPath}",
                     "name": "detail",
                     "target": "detail"
+                },
+                {
+                    "pattern": "update",
+                    "name": "update",
+                    "target": "update"
                 }
             ],
             "targets": {
@@ -115,6 +120,10 @@
                 "detail": {
                     "viewId": "detail",
                     "viewName": "Detail"
+                },
+                "update": {
+                    "viewId": "update",
+                    "viewName": "Update"
                 }
 
             }

@@ -9,7 +9,7 @@ async function searchByAttribute(search, attribute){
     values = attribute == 'book_id' ? [search] : [];
 
   //SEARCH for everything but categories and authors
-  let str = "select * from books left join booksextrainfo using(book_id) left join bookscategories using(book_id) left join categories using(category_id) left join booksauthors using(book_id) left join authors using(author_id) " + where + " order by book_id";
+  let str = "select * from books full join booksextrainfo using(book_id) full join bookscategories using(book_id) full join categories using(category_id) full join booksauthors using(book_id) full join authors using(author_id) " + where + " order by book_id";
   let res = await client.query(str, values);
   
   let rows = joinCategoriesAndAuthors(res.rows)
