@@ -32,4 +32,12 @@ async function removeBookCategory(book_id, category_id){
   await client.end();
 }
 
-module.exports = { removeBook,removeBookAuthor, removeBookCategory}
+async function truncateBooks(){
+  const client = new Client();
+  await client.connect();
+
+  await client.query("truncate books, authors, booksauthors, bookscategories, booksextrainfo, categories;")
+
+  await client.end();
+}
+module.exports = { removeBook,removeBookAuthor, removeBookCategory, truncateBooks}

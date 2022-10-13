@@ -29,13 +29,11 @@ async function createBook(query = queryTemplate){
     if(strs[0] == ""){
       strs[0] += key; strs[1] += values[key];
     }else{
-      console.log(key, values);
       strs[0] += `, ${key}`; strs[1] += `, '${values[key]}'`;
     }
     return strs;
   } , ["",""])
   let str = `INSERT INTO booksextrainfo(${keyString}) VALUES(${valString}) returning book_id`
-  console.log(str)
   res = await client.query(str);
 
   await client.end();

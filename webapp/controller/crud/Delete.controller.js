@@ -1,10 +1,9 @@
 sap.ui.define([
   'sap/ui/core/mvc/Controller',
-  "sap/ui/model/json/JSONModel",
   "sap/m/MessageToast",
   "sap/ui/core/routing/History",
   "sap/ui/core/UIComponent",
-], function(Controller, JSONModel, MessageToast, History, UIComponent) {
+], function(Controller, MessageToast, History, UIComponent) {
   "use strict";
 
   let PageController = Controller.extend("root.controller.crud.Delete", {
@@ -34,6 +33,16 @@ sap.ui.define([
 				let oRouter = UIComponent.getRouterFor(this);
 				oRouter.navTo("overview", {}, true)
 			}
+    },
+
+    truncate: function(){
+      fetch("/api/truncate", {
+        method: "DELETE"
+      }).then(r => {
+        MessageToast.show("all books were deleted");
+        const model = this.getView().getModel();
+        model.setData({...model.getData(), books : []})
+      })
     }
   });
 

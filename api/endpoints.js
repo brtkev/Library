@@ -1,7 +1,7 @@
 const Search = require('./queries/search');
 const {createBook} = require('./queries/create');
 const Update = require('./queries/update');
-const { removeBook } = require('./queries/remove');
+const { removeBook, truncateBooks } = require('./queries/remove');
 
 function errorCatcher(response){
 
@@ -48,11 +48,24 @@ function remove(req, res){
   .catch(errorCatcher(res));
 }
 
+function remove(req, res){ 
+  const {book_id} = req.query;
+  
+  removeBook(book_id)
+  .then(r => res.json(r))
+  .catch(errorCatcher(res));
+}
+
+function truncate(req, res){
+  truncateBooks();
+  res.json({ response : true})
+}
+
 
 module.exports = function(app ){
   app.get('/api/search', search);
   app.post('/api/create', create);
   app.put('/api/update', update);
   app.delete('/api/remove', remove);
-
+  app.delete('/api/truncate', truncate)
 } 

@@ -12,13 +12,7 @@
 				headerRole="Banner"
 				headerLabel="{i18n>Overview_headerLabel}"/>
 		</landmarkInfo>
-		<!-- <headerContent>
-			<Title text="{}" />
-			<Button 
-				icon="sap-icon://hello-world"
-				press=".onOpenDialog"
-				/>
-		</headerContent> -->
+		
 		<content>
 			<mvc:XMLView viewName="root.view.Tiles" />
 			<ToolbarSeparator />

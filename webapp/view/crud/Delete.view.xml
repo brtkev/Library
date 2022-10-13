@@ -7,6 +7,14 @@
 	xmlns="sap.m" >
 	<Page class="sapUiSmallMargin" showNavButton="true"
 		navButtonPress=".onNavBack" title="Delete"   >
+		<headerContent>
+			<!-- <Title text="{}" /> -->
+			<Button 
+				icon="sap-icon://cancel"
+				press=".truncate"
+				text="delete all"
+				/>
+		</headerContent>
 
     <FlexBox class="sapUiSmallMargin" alignItems="Center" justifyContent="Center" width="100%" >
       <Label text="Book id: " />
