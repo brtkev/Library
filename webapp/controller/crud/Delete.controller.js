@@ -9,16 +9,17 @@ sap.ui.define([
   let PageController = Controller.extend("root.controller.crud.Delete", {
 
     onDelete: function ( e){
-      let book_id = e.getParameter("value");
-
+      // let book_id = e.getParameter("value");
+      let book_id = this.byId("deleteInput").getValue();
       const url = "/api/remove?" + new URLSearchParams({book_id});
       fetch(url, { method: "DELETE" })
       .then(r => r.json()
       .then(data => {
-        MessageToast.show(`book with id of ${data.book_id} was deleted from the collection`);
+        MessageToast.show(`book with id of ${book_id} was deleted from the collection`);
 
       }))
       .catch(err => {
+
         MessageToast.show(`Error, no that Id doesn't exist`);
       })
     },

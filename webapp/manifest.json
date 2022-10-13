@@ -102,11 +102,6 @@
                     "target": "overview"
                 },
                 {
-                    "pattern": "detail/{bookPath}",
-                    "name": "detail",
-                    "target": "detail"
-                },
-                {
                     "pattern": "update",
                     "name": "update",
                     "target": "update"
@@ -126,10 +121,6 @@
                 "overview": {
                     "viewId": "overview",
                     "viewName": "Overview"
-                },
-                "detail": {
-                    "viewId": "detail",
-                    "viewName": "Detail"
                 },
                 "update": {
                     "viewId": "update",

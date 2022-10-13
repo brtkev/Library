@@ -18,7 +18,7 @@
 
     <FlexBox class="sapUiSmallMargin" alignItems="Center" justifyContent="Center" width="100%" >
       <Label text="Book id: " />
-      <Input value="" class="sapUiSmallMargin" submit=".onDelete" />
+      <Input value="" class="sapUiSmallMargin" submit=".onDelete" id="deleteInput" />
 
       <Button class="sapUiSmallMargin" text="Delete" press=".onDelete" ></Button>
     </FlexBox>

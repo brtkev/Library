@@ -40,6 +40,7 @@ sap.ui.define([
 						modelFromGoogle(search, model).then(() =>{
 							this.byId("createHint").setVisible(true)
 							this.byId("googleSearchButton").setVisible(false)
+							MessageToast.show("click an element to add it to the collection")
 						})
 						.catch((err) => MessageToast.show(err))
 					}
@@ -60,6 +61,7 @@ sap.ui.define([
 			modelFromGoogle(this.byId("searchField").getValue(), model).then(() => {
 				MessageToast.show("click an element to add it to the collection")
 				this.byId("createHint").setVisible(true)
+				this.byId("googleSearchButton").setVisible(false)
 			})
 			.catch((err) => MessageToast.show(err))
 		}
