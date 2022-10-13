@@ -112,7 +112,7 @@
                     "target": "update"
                 },
                 {
-                    "pattern": "create",
+                    "pattern": "create/{:bookPath:}",
                     "name": "create",
                     "target": "create"
                 },

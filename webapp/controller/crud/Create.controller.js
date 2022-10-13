@@ -8,6 +8,19 @@ sap.ui.define([
   "use strict";
 
   let PageController = Controller.extend("root.controller.crud.Create", {
+    onInit: function(){
+      var oRouter = this.getOwnerComponent().getRouter();
+			oRouter.getRoute("create").attachPatternMatched(this._onObjectMatched, this);
+    },
+    _onObjectMatched : function(e){
+      if(window.decodeURIComponent(e.getParameter("arguments").bookPath) != '{}'){
+				let i = window.decodeURIComponent(e.getParameter("arguments").bookPath).split('/')[1];
+        i = parseInt(i.slice(0, i.length-1));
+        const model = this.getView().getModel();
+        let book = model.getData().books[i];
+        model.setData({...model.getData(), book, inputStatus : false})
+			}
+    },
 
     onSubmit: function ( ){
       let data = this.getView().getModel().getData();

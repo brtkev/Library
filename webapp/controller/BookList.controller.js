@@ -52,9 +52,9 @@ sap.ui.define([
 			// console.log("click")
 			let oItem = oEvent.getSource();
 			let oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-			// oRouter.navTo("create", {
-			// 	bookPath: window.encodeURIComponent(oItem.getBindingContext().getPath().substr(1))
-			// })
+			oRouter.navTo("create", {
+				bookPath: window.encodeURIComponent(oItem.getBindingContext().getPath().substr(1))
+			})
 		}
 	})
 })

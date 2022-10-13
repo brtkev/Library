@@ -1,4 +1,4 @@
-const defaultUpdateModel = {
+const defaultModel = {
 	book : {
 		book_id : "",
 		title : "",
@@ -9,8 +9,7 @@ const defaultUpdateModel = {
 		img : "",
 		categories : "",
 		authors: ""
-	},
-	inputStatus : false
+	}
 }
 
 sap.ui.define([
@@ -28,9 +27,15 @@ sap.ui.define([
 
 		handleRouteMatched: function(e){
 			let routeName = e.getParameter("name");
-			if ( routeName == "update" || routeName == "create"){
+			if ( routeName == "update" ){
 				let model = this.getView().getModel();
-        model.setData({...model.getData(), ...defaultUpdateModel})
+        model.setData({...model.getData(), ...defaultModel, inputStatus : false})
+				
+				
+			}else if ( routeName == "create"){
+				let model = this.getView().getModel();
+        model.setData({...model.getData(), ...defaultModel, inputStatus : true})
+				
 				
 			}
 		}
