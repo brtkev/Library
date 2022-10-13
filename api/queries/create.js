@@ -23,10 +23,20 @@ async function createBook(query = queryTemplate){
   const {subtitle , description , printdate , img , editorial} = query;
 
   //INSERT INTO booksextrainfo
-  values = [book_id ,subtitle, description, printdate, img, editorial];
-  values = values.map(val => val == "" ? null : val);
-  res = await client.query("INSERT INTO booksextrainfo(book_id, subtitle, description, printdate, img, editorial) VALUES($1, $2, $3, $4, $5, $6) returning book_id",
-   values);
+  let values = {book_id ,subtitle, description, printdate, img, editorial};
+  let [keyString, valString] = Object.keys(values).reduce( (strs, key) => {
+    if(!values[key] || values[key] == 'undefined') return strs;
+    if(strs[0] == ""){
+      strs[0] += key; strs[1] += values[key];
+    }else{
+      console.log(key, values);
+      strs[0] += `, ${key}`; strs[1] += `, '${values[key]}'`;
+    }
+    return strs;
+  } , ["",""])
+  let str = `INSERT INTO booksextrainfo(${keyString}) VALUES(${valString}) returning book_id`
+  console.log(str)
+  res = await client.query(str);
 
   await client.end();
 

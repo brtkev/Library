@@ -20,7 +20,6 @@ sap.ui.define([
       fetch(url, { method: "GET" })
       .then(r => r.json()
       .then(data => {
-        console.log(data)
         if(data){
           let model = this.getView().getModel();
           model.setData({...model.getData(), ...{book : data[0], inputStatus : true}})
@@ -37,6 +36,18 @@ sap.ui.define([
       .then(r => r.json()
       .then(data => {
         MessageToast.show(`book ${data.book_id} updated`);
+        const model = this.getView().getModel();
+        model.setData({...model.getData(), book : {
+          book_id : "",
+          title : "",
+          subtitle : "",
+          description : "",
+          printdate : "",
+          editorial: "",
+          img : "",
+          categories : "",
+          authors: ""
+        }, inputStatus : true})
       }))
       .catch(err => {
         MessageToast.show(`Error happened`);

@@ -28,8 +28,19 @@ sap.ui.define([
       fetch(url, { method: "POST" })
       .then(r => r.json()
       .then(data => {
-        console.log(data)
         MessageToast.show(`book was added to the collection with the id ${data.book_id}`);
+        const model = this.getView().getModel();
+        model.setData({...model.getData(), book : {
+          book_id : "",
+          title : "",
+          subtitle : "",
+          description : "",
+          printdate : "",
+          editorial: "",
+          img : "",
+          categories : "",
+          authors: ""
+        }, inputStatus : true})
       }))
       .catch(err => {
         MessageToast.show(`Error happened`);

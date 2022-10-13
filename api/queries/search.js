@@ -5,7 +5,7 @@ async function searchByAttribute(search, attribute){
   await client.connect();
 
   //IF attribute is id or not
-  let where = attribute == 'book_id' ? "where book_id = $1" : "where " + `${attribute} like '%${search}%'`,
+  let where = attribute == 'book_id' ? "where book_id = $1" : "where " + `${attribute} ilike '%${search}%'`,
     values = attribute == 'book_id' ? [search] : [];
 
   //SEARCH for everything but categories and authors
@@ -13,7 +13,7 @@ async function searchByAttribute(search, attribute){
   let res = await client.query(str, values);
   
   let rows = joinCategoriesAndAuthors(res.rows)
-  
+
   await client.end();
   return rows;
 }
@@ -29,11 +29,12 @@ function joinCategoriesAndAuthors(rows){
     delete curr.author_name;
 
     //first element of the array
-    if(!arr) return [curr];
+    if(arr.length == 0) {
+      return [curr];
     
     //rows are always sorted by id
     //if last item if eq curr item id then join them
-    else if(arr[arr.length -1].book_id == curr.book_id){
+    }else if(arr[arr.length -1].book_id == curr.book_id){
       arr[arr.length -1] = appendCategory(arr[arr.length -1], curr);
       arr[arr.length -1] = appendAuthor(arr[arr.length -1], curr) 
 
@@ -44,7 +45,7 @@ function joinCategoriesAndAuthors(rows){
       arr.push(curr);
     }
     return arr;
-  }, false)
+  }, [])
 }
 
 function appendCategory(prev, curr){

@@ -19,14 +19,15 @@
 				  <core:Item key="editorial" text="editor"></core:Item>
 				 </items>
 				</Select>
-				<SearchField
+				<SearchField id="searchField" 
 					width="50%"
-					search=".onFilterBooks"
+					search=".onSearchBooks"
 					ariaLabelledBy="searchFieldLabel"
 					ariaDescribedBy="searchFieldDescription"
 					placeholder="{i18n>searchFieldPlaceholder}"/>
 			</Toolbar>
 		</headerToolbar>
+		<Text text="click an element to add it to the database" id="createHint" visible="false" ></Text>
 		<Table
 			id="bookList"
 			class="sapUiResponsiveMargin"
@@ -42,6 +43,14 @@
 				</Column>
 				<Column>
 					<Text text="{i18n>columnTitle}"/>
+				</Column>
+				<Column>
+					<Text text="Subtitle"/>
+				</Column>
+				<Column
+					minScreenWidth="Small"
+					demandPopin="true">
+					<Text text="Description"/>
 				</Column>
 				<Column
 					minScreenWidth="Small"
@@ -63,6 +72,10 @@
 				</Column>
 				<Column
 					hAlign="End">
+					<Text text="Image"/>
+				</Column>
+				<Column
+					hAlign="End">
 					<Text text="Source"/>
 				</Column>
 			</columns>
@@ -73,14 +86,20 @@
 					<cells>
 						<ObjectNumber number="{book_id}" emphasized="false"/>
 						<ObjectIdentifier title="{title}"/>
+						<ObjectAttribute text="{subtitle}"/>
+						<Text text="{description}" maxLines="5" ></Text>
 						<ObjectAttribute text="{authors}"/>
 						<ObjectAttribute text="{categories}"/>
 						<ObjectAttribute text="{printdate}"/>
 						<ObjectAttribute text="{editorial}"/>
+						<Image src="{img}" alt="book image" ></Image>
 						<ObjectAttribute text="{source}"/>
 					</cells>
 				</ColumnListItem>
 			</items>
 		</Table>
+		<FlexBox justifyContent="Center" visible="false" id="googleSearchButton">
+			<Button text="Search on google" press=".onGoogleSearchButtonPress" ></Button>
+		</FlexBox>
 	</Panel>
 </mvc:View>

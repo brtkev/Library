@@ -16,11 +16,11 @@ sap.ui.define([
       fetch(url, { method: "DELETE" })
       .then(r => r.json()
       .then(data => {
-        console.log(data)
         MessageToast.show(`book with id of ${data.book_id} was deleted from the collection`);
+
       }))
       .catch(err => {
-        MessageToast.show(`Error happened`);
+        MessageToast.show(`Error, no that Id doesn't exist`);
       })
     },
 

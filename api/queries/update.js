@@ -22,11 +22,10 @@ async function updateBook(book_id, query = queryTemplate){
   if( ! select.rowCount ) return {"error" : "book_id doesn't exist"};
 
   const { authors, categories, title} = query;
-
   //UPDATE BOOKS
   if(title) await client.query("update books set title = $1 where book_id = $2", [title, book_id])
-
-  //UPDATE CATEGORIES
+  
+    //UPDATE CATEGORIES
   if(categories){
     try {
       await updateCategories(book_id, JSON.parse(categories));
@@ -34,6 +33,7 @@ async function updateBook(book_id, query = queryTemplate){
       await updateCategories(book_id, categories.split(/ *, */));
     }
   }
+  
   //UPDATE AUTHORS
   if(authors){
     try {
@@ -44,20 +44,21 @@ async function updateBook(book_id, query = queryTemplate){
   }
   
   
+  
   const { subtitle, description, editorial, img, printdate } = query;
   const extraInfo = { subtitle, description, editorial, img, printdate };
   //UPDATE BOOKSEXTRAINFO
   const values = Object.keys(extraInfo).reduce( (prev, curr) => {
     if(prev == ""){
       prev += `${curr} = '${extraInfo[curr]}'`
-    }else{
-      // if(extraInfo[curr] == "null")prev += `, ${curr} = ''`;
+    }else if(extraInfo[curr]){
       prev += `, ${curr} = '${extraInfo[curr]}'`
     }
     return prev;
   }, "");
   if(values != ""){
     let str = `update booksextrainfo set ${values} where book_id = $1`;
+    
     try{
       select = await client.query(str, [book_id]);
     } catch (err) {
@@ -65,6 +66,7 @@ async function updateBook(book_id, query = queryTemplate){
       throw err;
     }
   }
+  
   
   await client.end();
   return {"book_id" : book_id}
