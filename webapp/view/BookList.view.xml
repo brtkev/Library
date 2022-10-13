@@ -43,9 +43,6 @@
 				<Column>
 					<Text text="{i18n>columnTitle}"/>
 				</Column>
-				<Column>
-					<Text text="{i18n>columnSubtitle}"/>
-				</Column>
 				<Column
 					minScreenWidth="Small"
 					demandPopin="true">
@@ -64,6 +61,10 @@
 					hAlign="End">
 					<Text text="{i18n>columnEditor}"/>
 				</Column>
+				<Column
+					hAlign="End">
+					<Text text="Source"/>
+				</Column>
 			</columns>
 			<items>
 				<ColumnListItem
@@ -72,21 +73,11 @@
 					<cells>
 						<ObjectNumber number="{book_id}" emphasized="false"/>
 						<ObjectIdentifier title="{title}"/>
-						<Text text="{subtitle}"/>
-						<Text text="{authors}"/>
-						<Text text="{categories}"/>
-						<Text text="{printdate}"/>
-						<Text text="{editorial}"/>
-						<!-- <ObjectNumber
-							number="{
-								parts: [{path: 'invoice>ExtendedPrice'}, {path: 'view>/currency'}],
-								type: 'sap.ui.model.type.Currency',
-								formatOptions: {
-									showMeasure: false
-								}
-							}"
-							unit="{view>/currency}"
-							state="{= ${invoice>ExtendedPrice} > 50 ? 'Error' : 'Success' }"/> -->
+						<ObjectAttribute text="{authors}"/>
+						<ObjectAttribute text="{categories}"/>
+						<ObjectAttribute text="{printdate}"/>
+						<ObjectAttribute text="{editorial}"/>
+						<ObjectAttribute text="{source}"/>
 					</cells>
 				</ColumnListItem>
 			</items>
