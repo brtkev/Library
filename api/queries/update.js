@@ -26,7 +26,8 @@ async function updateBook(book_id, query = queryTemplate){
   if(title) await client.query("update books set title = $1 where book_id = $2", [title, book_id])
   
     //UPDATE CATEGORIES
-  if(categories){
+  if(categories == "") await updateCategories(book_id, [""])
+  else if(categories){
     try {
       await updateCategories(book_id, JSON.parse(categories));
     } catch (error) {
@@ -35,7 +36,8 @@ async function updateBook(book_id, query = queryTemplate){
   }
   
   //UPDATE AUTHORS
-  if(authors){
+  if(authors == "") await updateAuthors(book_id, [""])
+  else if(authors){
     try {
       await updateAuthors(book_id, JSON.parse(authors));
     } catch (error) {
@@ -49,16 +51,16 @@ async function updateBook(book_id, query = queryTemplate){
   const extraInfo = { subtitle, description, editorial, img, printdate };
   //UPDATE BOOKSEXTRAINFO
   const values = Object.keys(extraInfo).reduce( (prev, curr) => {
+    if(!extraInfo[curr]) extraInfo[curr] = '';
     if(prev == ""){
       prev += `${curr} = '${extraInfo[curr]}'`
-    }else if(extraInfo[curr]){
+    }else{
       prev += `, ${curr} = '${extraInfo[curr]}'`
     }
     return prev;
   }, "");
   if(values != ""){
     let str = `update booksextrainfo set ${values} where book_id = $1`;
-    
     try{
       select = await client.query(str, [book_id]);
     } catch (err) {
@@ -85,7 +87,6 @@ async function updateCategories(book_id, categories = []){
   })
   
   categories.forEach(async category => {
-    if(category == "") return;
     let i = categoriesInDB.findIndex( cat=> cat.name == category);
     if(i == -1 ) await addBookCategory(book_id, category)
   })
@@ -106,7 +107,6 @@ async function updateAuthors(book_id, authors = []){
   })
 
   authors.forEach(async author => {
-    if(author == "") return;
     let i = authorsInDB.findIndex(a => a.name == author);
     if(i == -1 ) await addBookAuthor(book_id, author)
   })

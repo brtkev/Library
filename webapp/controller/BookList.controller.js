@@ -1,12 +1,10 @@
 sap.ui.define([
 	"sap/ui/core/mvc/Controller",
-	"../model/formatter",
 	"sap/m/MessageToast",
-], function(Controller, formatter, MessageToast){
+], function(Controller, MessageToast){
 	"use strict";
 
 	return Controller.extend("root.controller.BookList", {
-		formatter: formatter,
 		onInit: function() {
 		
 		},
@@ -39,20 +37,11 @@ sap.ui.define([
 						this.byId("googleSearchButton").setVisible(true)
 						
 					}else{
-						const googleUrl = "https://www.googleapis.com/books/v1/volumes?" + new URLSearchParams({
-							q: search
-						})
-						fetch(googleUrl, {method: "GET"})
-						.then(r => r.json()
-						.then(data => {
-							model.setData({
-								...model.getData(),
-								books: googleBooksFilter(data)
-							})
-							MessageToast.show("click an element to add it to the collection")
+						modelFromGoogle(search, model).then(() =>{
 							this.byId("createHint").setVisible(true)
 							this.byId("googleSearchButton").setVisible(false)
-						}))
+						})
+						.catch((err) => MessageToast.show(err))
 					}
 				}))
 
@@ -68,24 +57,28 @@ sap.ui.define([
 
 		onGoogleSearchButtonPress: function(){
 			let model = this.getView().getModel();
-			const googleUrl = "https://www.googleapis.com/books/v1/volumes?" + new URLSearchParams({
-				q: this.byId("searchField").getValue()
-			})
-			fetch(googleUrl, {method: "GET"})
-			.then(r => r.json()
-			.then(data => {
-				model.setData({
-					...model.getData(),
-					books: [...model.getData().books, ...googleBooksFilter(data) ]
-				})
+			modelFromGoogle(this.byId("searchField").getValue(), model).then(() => {
 				MessageToast.show("click an element to add it to the collection")
 				this.byId("createHint").setVisible(true)
-			}))
-			
+			})
+			.catch((err) => MessageToast.show(err))
 		}
 	})
 })
 
+async function modelFromGoogle(query, model){
+	const googleUrl = "https://www.googleapis.com/books/v1/volumes?" + new URLSearchParams({
+		q: query
+	})
+	fetch(googleUrl, {method: "GET"})
+	.then(r => r.json()
+	.then(data => {
+		model.setData({
+			...model.getData(),
+			books: [...model.getData().books, ...googleBooksFilter(data) ]
+		})
+	}))
+}
 
 function googleBooksFilter(data){
 	let books = data.items.slice(0,50);

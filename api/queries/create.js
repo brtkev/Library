@@ -25,15 +25,16 @@ async function createBook(query = queryTemplate){
   //INSERT INTO booksextrainfo
   let values = {book_id ,subtitle, description, printdate, img, editorial};
   let [keyString, valString] = Object.keys(values).reduce( (strs, key) => {
-    if(!values[key] || values[key] == 'undefined') return strs;
+    if(!values[key] || values[key] == 'undefined') values[key] = '';
     if(strs[0] == ""){
       strs[0] += key; strs[1] += values[key];
     }else{
-      strs[0] += `, ${key}`; strs[1] += `, '${values[key]}'`;
+      strs[0] += `, ${key}`; strs[1] += `, '${values[key].slice(0, 100)}'`;
     }
     return strs;
   } , ["",""])
   let str = `INSERT INTO booksextrainfo(${keyString}) VALUES(${valString}) returning book_id`
+  
   res = await client.query(str);
 
   await client.end();
@@ -61,7 +62,7 @@ async function createBook(query = queryTemplate){
     } catch (error) {
       //string
       categories.split(/ *, */).forEach(category => {
-        if(category == "") return;
+        if(category == "" || category == 'undefined') return;
         addBookCategory(book_id, category)
       })
       
