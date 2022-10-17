@@ -23,17 +23,9 @@ sap.ui.define([
         MessageToast.show(`Error, no that Id doesn't exist`);
       })
     },
-
+    
     onNavBack: function(){
-      let oHistory = History.getInstance();
-			let sPreviousHash = oHistory.getPreviousHash();
-
-			if(sPreviousHash !== undefined){
-				window.history.go(-1)
-			}else{
-				let oRouter = UIComponent.getRouterFor(this);
-				oRouter.navTo("overview", {}, true)
-			}
+      return this.getOwnerComponent().onNavBack();
     },
 
     truncate: function(){

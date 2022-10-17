@@ -15,8 +15,8 @@
 		
 		<content>
 			<mvc:XMLView viewName="root.view.Tiles" />
-			<ToolbarSeparator />
-			<mvc:XMLView viewName="root.view.BookList" />
+			<!-- <ToolbarSeparator /> -->
+			<!-- <mvc:XMLView viewName="root.view.BookList" /> -->
 		</content>
 	</Page>
 </mvc:View>

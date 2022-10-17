@@ -115,6 +115,11 @@
                     "pattern": "delete",
                     "name": "delete",
                     "target": "delete"
+                },
+                {
+                    "pattern": "search",
+                    "name": "search",
+                    "target": "search"
                 }
             ],
             "targets": {
@@ -133,6 +138,10 @@
                 "delete":{
                     "viewId" :"delete",
                     "viewName": "crud.Delete"
+                },
+                "search":{
+                    "viewId" :"search",
+                    "viewName": "crud.Search"
                 }
 
             }

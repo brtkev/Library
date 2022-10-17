@@ -34,4 +34,12 @@
 			<ImageContent src="sap-icon://decline" />
 		</TileContent>
   </GenericTile>
+  <GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" 
+    header="Search books" 
+    press=".onSearchPress"
+    frameType="TwoByHalf">
+    <TileContent >
+      <ImageContent src="sap-icon://search" />
+    </TileContent>
+  </GenericTile>
 </mvc:View>

@@ -17,6 +17,10 @@ sap.ui.define([
     onDeletePress: function(){
       let oRouter = this.getOwnerComponent().getRouter();
       oRouter.navTo("delete");  
+    },
+    onSearchPress: function(){
+      let oRouter = this.getOwnerComponent().getRouter();
+      oRouter.navTo("search");  
     }
   });
 });
