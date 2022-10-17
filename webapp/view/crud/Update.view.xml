@@ -89,7 +89,7 @@
 			</f:formContainers>
 		</f:Form>
 		<FlexBox justifyContent="Center">
-			<Button text="Update" width="100%" press=".onSubmit" />
+			<Button text="Update" width="100%" press=".onSubmit" enabled="{/inputStatus}" />
 		</FlexBox>
 	</Page>
 </mvc:View>

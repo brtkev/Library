@@ -11,6 +11,9 @@ sap.ui.define([
     onDelete: function ( e){
       // let book_id = e.getParameter("value");
       let book_id = this.byId("deleteInput").getValue();
+
+      if(this.getOwnerComponent().bookIdError(book_id)) return;
+      
       const url = "/api/remove?" + new URLSearchParams({book_id});
       fetch(url, { method: "DELETE" })
       .then(r => r.json()

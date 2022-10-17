@@ -2,7 +2,7 @@
 	controllerName="root.controller.App"
 	xmlns="sap.m"
 	xmlns:mvc="sap.ui.core.mvc" >
-	<Page title="{i18n>homePageTitle}">
+	<Page title="{i18n>homePageTitle}" >
 		<landmarkInfo>
 			<PageAccessibleLandmarkInfo
 				rootRole="Region"
@@ -13,10 +13,8 @@
 				headerLabel="{i18n>Overview_headerLabel}"/>
 		</landmarkInfo>
 		
-		<content>
+		<content >
 			<mvc:XMLView viewName="root.view.Tiles" />
-			<!-- <ToolbarSeparator /> -->
-			<!-- <mvc:XMLView viewName="root.view.BookList" /> -->
 		</content>
 	</Page>
 </mvc:View>

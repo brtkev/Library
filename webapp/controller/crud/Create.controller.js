@@ -24,6 +24,9 @@ sap.ui.define([
 
     onSubmit: function ( ){
       let data = this.getView().getModel().getData();
+
+      if(this.getOwnerComponent().titleError(data.book.title)) return;
+
       const url = "/api/create?" + new URLSearchParams(data.book);
       fetch(url, { method: "POST" })
       .then(r => r.json()
@@ -43,7 +46,7 @@ sap.ui.define([
         }, inputStatus : true})
       }))
       .catch(err => {
-        MessageToast.show(`Error happened`);
+        MessageToast.show(`Error happened creating the book`);
       })
     },
 

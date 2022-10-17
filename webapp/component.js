@@ -3,8 +3,9 @@ sap.ui.define([
 	"sap/ui/model/json/JSONModel",
 	"sap/ui/model/resource/ResourceModel",
 	"sap/ui/core/routing/History",
-	"sap/ui/Device"
-], function(UIComponent, JSONModel, ResourceModel, History, Device) {
+	"sap/ui/Device",
+	"sap/m/MessageToast",
+], function(UIComponent, JSONModel, ResourceModel, History, Device,MessageToast) {
 	"use strict";
 
 	return UIComponent.extend("root.component", {
@@ -66,7 +67,25 @@ sap.ui.define([
 				let oRouter = UIComponent.getRouterFor(this);
 				oRouter.navTo("overview", {}, true)
 			}
-	    }
+	    },
 
+	    titleError: function(title){
+	    	if(title == ""){
+	    		MessageToast.show("Error, Title cannot be empty");
+	    		return true;
+	    	}
+	    	return false;
+	    },
+
+	    bookIdError: function(bookId){
+	    	if(bookId == ""){
+		        MessageToast.show("Error, book id cannot be empty");
+		        return true; 
+		    }else if(! /^[0-9]+$/.test(bookId)){
+		        MessageToast.show("Error, book id should be a number");
+		        return true;
+		    }
+		    return false;
+	    }
 	})
 })
